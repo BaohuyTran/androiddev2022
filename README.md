@@ -12,5 +12,5 @@ Student Info
 
 * Name: *Trần Bảo Huy*
 * ID: *BI10-079*
-* Group ID: *Group ID: 3*
+* Group ID: *3*
 
