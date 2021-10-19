@@ -1,5 +1,7 @@
 package vn.edu.usth.weather;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -7,8 +9,13 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -59,6 +66,31 @@ public class WeatherActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Log.i("Weather", "onPause() called");
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle saveInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onCreate(saveInstanceState, persistentState);
+        Log.i("Weather", "onCreate() called");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOtionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.refresh) {
+            Toast.makeText(this, "Refreshing.. wait a second..", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else if (item.getItemId() == R.id.settings) {
+            Intent intent = new Intent();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
